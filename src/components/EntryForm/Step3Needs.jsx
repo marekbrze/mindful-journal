@@ -1,0 +1,109 @@
+import { GroupedChipSelector } from './ChipSelector'
+import { needsCategories } from '../../data/needs'
+
+function Textarea({ id, label, hint, value, onChange, placeholder, minHeight = 96 }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <label
+        htmlFor={id}
+        className="text-sm font-semibold"
+        style={{ color: 'var(--text)', fontFamily: 'var(--font-sans)' }}
+      >
+        {label}
+      </label>
+      {hint && (
+        <p className="text-xs" id={`${id}-hint`} style={{ color: 'var(--text-subtle)' }}>
+          {hint}
+        </p>
+      )}
+      <textarea
+        id={id}
+        aria-describedby={hint ? `${id}-hint` : undefined}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full px-4 py-3 rounded-xl border text-sm leading-relaxed resize-y transition-colors focus:outline-none"
+        style={{
+          background: 'var(--surface-raised)',
+          border: '1.5px solid var(--border)',
+          color: 'var(--text)',
+          fontFamily: 'var(--font-sans)',
+          minHeight,
+        }}
+        onFocus={e => {
+          e.target.style.borderColor = 'var(--primary)'
+          e.target.style.boxShadow = '0 0 0 3px var(--primary-softer)'
+        }}
+        onBlur={e => {
+          e.target.style.borderColor = 'var(--border)'
+          e.target.style.boxShadow = 'none'
+        }}
+      />
+    </div>
+  )
+}
+
+export function Step3Needs({ data, onChange }) {
+  const handleChange = (key) => (val) => onChange({ ...data, [key]: val })
+
+  return (
+    <div className="flex flex-col gap-8">
+      <div>
+        <h2
+          className="text-xl mb-1"
+          style={{ fontFamily: 'var(--font-serif)', color: 'var(--text)' }}
+        >
+          Czego potrzebujesz?
+        </h2>
+        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+          Zidentyfikuj potrzeby i sformułuj drogę do siebie.
+        </p>
+      </div>
+
+      <section aria-labelledby="needs-heading">
+        <h3
+          id="needs-heading"
+          className="text-sm font-semibold uppercase tracking-wider mb-3"
+          style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-sans)' }}
+        >
+          Wybierz potrzeby
+        </h3>
+        <GroupedChipSelector
+          categories={needsCategories}
+          selected={data.needs ?? []}
+          onChange={handleChange('needs')}
+        />
+      </section>
+
+      <Textarea
+        id="desiredFeeling"
+        label="Jak chciałbym/chciałabym się czuć? Czego teraz potrzebuję?"
+        hint="Wyobraź sobie, jak chciałbyś się czuć. Jakie potrzeby chcesz zaspokoić?"
+        value={data.desiredFeeling ?? ''}
+        onChange={handleChange('desiredFeeling')}
+        placeholder="Chciałbym poczuć spokój i poczucie bycia wysłuchanym..."
+        minHeight={96}
+      />
+
+      <Textarea
+        id="thinking"
+        label="Jak potrzebuję myśleć?"
+        hint="Jakie myślenie lub przekonanie pomoże Ci poczuć się lepiej i zaspokoić potrzeby?"
+        value={data.thinking ?? ''}
+        onChange={handleChange('thinking')}
+        placeholder="Mogę dbać o siebie. Moje potrzeby są ważne. Jeden trudny moment nie definiuje całości..."
+        minHeight={96}
+      />
+
+      <Textarea
+        id="actions"
+        label="Co mogę dla siebie zrobić?"
+        hint="Konkretne działania, które możesz podjąć teraz lub wkrótce, aby zaspokoić potrzeby."
+        value={data.actions ?? ''}
+        onChange={handleChange('actions')}
+        placeholder="Np. Zadzwonić do przyjaciela, wyjść na spacer, napisać w dzienniku..."
+        minHeight={96}
+      />
+    </div>
+  )
+}

@@ -1,0 +1,32 @@
+export const emotionsMet = [
+  "Pełen energii", "Pełen werwy", "Pełen życia", "Pobudzony", "Ożywiony",
+  "Zelektryzowany", "Rozentuzjazmowany", "Uskrzydlony", "Pełen pasji",
+  "Komfort", "Zaspokojony", "Usatysfakcjonowany", "Rozluźniony", "Zrelaksowany",
+  "Bezpieczny", "Beztroski",
+  "Wypoczęty", "Odświeżony", "Energiczny", "Silny", "Pogodny", "Swobodny", "Pełen błogości",
+  "Zainteresowany", "Zaciekawiony", "Podniecony", "Podekscytowany", "Zafascynowany",
+  "Zaintrygowany", "Zainspirowany", "Zachęcony",
+  "Zadowolony", "Szczęśliwy", "Pełen nadziei", "Zachwycony", "Wdzięczny",
+  "Radosny", "Spełniony", "Pełen optymizmu", "Dumny",
+  "Spokojny", "Wyciszony",
+  "Kochający", "W kontakcie", "Otwarty", "Czuły", "Przyjazny",
+  "Wesoły", "Śmiały", "Żywy", "Chętny do zabawy", "Rozbawiony", "Rozradowany",
+  "Wzruszony", "Roztkliwiony", "Pokrzepiony", "Rozpromieniony", "Poruszony",
+]
+
+export const emotionsUnmet = [
+  "Bez energii", "Apatyczny", "Markotny", "Odrętwiały", "Oklapnięty",
+  "Osowiały", "Otępiały", "Przybity", "Przygaszony",
+  "Dyskomfort", "Zaniepokojony", "Zirytowany", "Zawstydzony", "Zakłopotany",
+  "Skonsternowany", "Speszony", "Spłoszony", "Spięty", "Strapiony", "Zmieszany", "Zażenowany",
+  "Zmęczony", "Wyczerpany", "Śpiący", "Słaby", "Przytłoczony",
+  "Niezainteresowany", "Znudzony", "Pusty",
+  "Niezadowolony", "Nieszczęśliwy", "Rozczarowany", "Ociężały", "Osamotniony",
+  "Nerwowy", "Zmartwiony", "Napięty", "Podenerwowany", "Podminowany",
+  "Wściekły", "Zły", "Sfrustrowany", "Podrażniony", "Rozdygotany", "Rozeźlony",
+  "Rozsierdzony", "Zagniewany", "Wzburzony",
+  "Zasmucony", "Zatroskany", "Przygnębiony", "Załamany", "Zafrasowany",
+  "Rozgoryczony", "Zgorzkniały", "Zaskoczony", "Zawiedziony",
+  "Przestraszony", "Pełen obaw", "Wątpiący", "Zszokowany", "Przerażony",
+  "Spanikowany", "Zatrwożony", "Roztrzęsiony",
+]
