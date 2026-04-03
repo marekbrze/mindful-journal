@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Search, ChevronDown, ChevronUp } from 'lucide-react'
+import { Search } from 'lucide-react'
 
 function cn(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -78,31 +78,51 @@ export function ChipSelector({ options, selected, onChange, searchable = false, 
 }
 
 export function GroupedChipSelector({ categories, selected, onChange }) {
-  const [openCats, setOpenCats] = useState(() => new Set(categories.map(c => c.id)))
+  const [activeTab, setActiveTab] = useState(categories[0]?.id ?? null)
   const [query, setQuery] = useState('')
 
   const toggle = (item) => {
-    if (selected.includes(item)) {
-      onChange(selected.filter(s => s !== item))
-    } else {
-      onChange([...selected, item])
-    }
+    onChange(
+      selected.includes(item)
+        ? selected.filter(s => s !== item)
+        : [...selected, item]
+    )
   }
 
-  const toggleCat = (id) => {
-    setOpenCats(prev => {
-      const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
-      return next
-    })
-  }
+  const isSearching = query.trim().length > 0
 
-  const filteredCategories = categories.map(cat => ({
-    ...cat,
-    needs: query.trim()
-      ? cat.needs.filter(n => n.toLowerCase().includes(query.toLowerCase()))
-      : cat.needs,
-  })).filter(cat => cat.needs.length > 0)
+  const searchResults = isSearching
+    ? categories
+        .map(cat => ({
+          ...cat,
+          needs: cat.needs.filter(n => n.toLowerCase().includes(query.toLowerCase())),
+        }))
+        .filter(cat => cat.needs.length > 0)
+    : []
+
+  const activeCategory = categories.find(c => c.id === activeTab)
+
+  const chipButton = (item) => {
+    const active = selected.includes(item)
+    return (
+      <button
+        key={item}
+        type="button"
+        role="checkbox"
+        aria-checked={active}
+        onClick={() => toggle(item)}
+        className={cn(
+          'inline-flex items-center px-3 py-2 rounded-full text-sm font-medium border',
+          'transition-all duration-150 min-h-[40px] cursor-pointer',
+          active
+            ? 'border-[var(--primary)] bg-[var(--primary-soft)] text-[var(--primary)]'
+            : 'border-[var(--border)] bg-[var(--surface-raised)] text-[var(--text-muted)] hover:border-[var(--primary-soft)] hover:bg-[var(--primary-softer)] hover:text-[var(--text)]'
+        )}
+      >
+        {item}
+      </button>
+    )
+  }
 
   return (
     <div className="flex flex-col gap-3">
@@ -128,74 +148,86 @@ export function GroupedChipSelector({ categories, selected, onChange }) {
         />
       </div>
 
-      {filteredCategories.length === 0 && (
-        <p className="text-sm italic" style={{ color: 'var(--text-subtle)' }}>
-          Brak wyników dla &quot;{query}&quot;
-        </p>
-      )}
-
-      <div className="flex flex-col gap-2">
-        {filteredCategories.map(cat => {
-          const isOpen = openCats.has(cat.id) || !!query.trim()
-          const catSelected = cat.needs.filter(n => selected.includes(n)).length
-          return (
-            <div
-              key={cat.id}
-              className="rounded-xl border overflow-hidden"
-              style={{ border: '1.5px solid var(--border-subtle)', background: 'var(--surface)' }}
-            >
-              <button
-                type="button"
-                onClick={() => toggleCat(cat.id)}
-                className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold transition-colors hover:bg-[var(--primary-softer)]"
-                style={{ color: 'var(--text)', fontFamily: 'var(--font-sans)' }}
-                aria-expanded={isOpen}
-              >
-                <span className="flex items-center gap-2">
+      {isSearching ? (
+        <>
+          {searchResults.length === 0 ? (
+            <p className="text-sm italic" style={{ color: 'var(--text-subtle)' }}>
+              Brak wyników dla &quot;{query}&quot;
+            </p>
+          ) : (
+            <div className="flex flex-col gap-4">
+              {searchResults.map(cat => (
+                <div key={cat.id}>
+                  <p
+                    className="text-xs font-semibold flex items-center gap-1.5 mb-2"
+                    style={{ color: 'var(--text-subtle)', fontFamily: 'var(--font-sans)' }}
+                  >
+                    <span role="img" aria-hidden="true">{cat.icon}</span>
+                    {cat.label}
+                  </p>
+                  <div className="flex flex-wrap gap-2" role="group" aria-label={cat.label}>
+                    {cat.needs.map(item => chipButton(item))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          <div
+            role="tablist"
+            aria-label="Kategorie potrzeb"
+            className="flex gap-1 overflow-x-auto pb-px"
+          >
+            {categories.map(cat => {
+              const catSelectedCount = cat.needs.filter(n => selected.includes(n)).length
+              const isActive = activeTab === cat.id
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={`tabpanel-${cat.id}`}
+                  id={`tab-${cat.id}`}
+                  onClick={() => setActiveTab(cat.id)}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 shrink-0 whitespace-nowrap min-h-[40px]"
+                  style={{
+                    background: isActive ? 'var(--primary-soft)' : 'transparent',
+                    color: isActive ? 'var(--primary)' : 'var(--text-subtle)',
+                    border: '1.5px solid',
+                    borderColor: isActive ? 'var(--primary)' : 'transparent',
+                  }}
+                >
                   <span role="img" aria-hidden="true">{cat.icon}</span>
-                  {cat.label}
-                  {catSelected > 0 && (
+                  <span className="hidden sm:inline">{cat.label}</span>
+                  {catSelectedCount > 0 && (
                     <span
                       className="inline-flex items-center justify-center w-5 h-5 rounded-full text-xs font-bold"
                       style={{ background: 'var(--primary)', color: 'white' }}
+                      aria-label={`${catSelectedCount} wybrane`}
                     >
-                      {catSelected}
+                      {catSelectedCount}
                     </span>
                   )}
-                </span>
-                {isOpen
-                  ? <ChevronUp size={16} style={{ color: 'var(--text-subtle)' }} aria-hidden="true" />
-                  : <ChevronDown size={16} style={{ color: 'var(--text-subtle)' }} aria-hidden="true" />
-                }
-              </button>
-              {isOpen && (
-                <div className="px-4 pb-4 pt-1 flex flex-wrap gap-2" role="group" aria-label={cat.label}>
-                  {cat.needs.map(item => {
-                    const active = selected.includes(item)
-                    return (
-                      <button
-                        key={item}
-                        type="button"
-                        role="checkbox"
-                        aria-checked={active}
-                        onClick={() => toggle(item)}
-                        className={[
-                          'inline-flex items-center px-3 py-2 rounded-full text-sm font-medium border transition-all duration-150 min-h-[40px] cursor-pointer',
-                          active
-                            ? 'border-[var(--primary)] bg-[var(--primary-soft)] text-[var(--primary)]'
-                            : 'border-[var(--border)] bg-[var(--surface-raised)] text-[var(--text-muted)] hover:border-[var(--primary-soft)] hover:bg-[var(--primary-softer)] hover:text-[var(--text)]',
-                        ].join(' ')}
-                      >
-                        {item}
-                      </button>
-                    )
-                  })}
-                </div>
-              )}
+                </button>
+              )
+            })}
+          </div>
+
+          {activeCategory && (
+            <div
+              id={`tabpanel-${activeCategory.id}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${activeCategory.id}`}
+              className="flex flex-wrap gap-2"
+            >
+              {activeCategory.needs.map(item => chipButton(item))}
             </div>
-          )
-        })}
-      </div>
+          )}
+        </>
+      )}
     </div>
   )
 }

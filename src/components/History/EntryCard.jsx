@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronUp, Trash2, Clock } from 'lucide-react'
+import { needsCategories } from '../../data/needs'
 
 function formatDate(iso) {
   const d = new Date(iso)
@@ -43,6 +44,65 @@ function Row({ label, value }) {
         ) : (
           <span>{value}</span>
         )}
+      </dd>
+    </div>
+  )
+}
+
+function NeedsRows({ needs }) {
+  if (!needs || needs.length === 0) return null
+
+  const buckets = []
+  const usedNeeds = new Set()
+
+  for (const cat of needsCategories) {
+    const matched = needs.filter(n => cat.needs.includes(n))
+    if (matched.length > 0) {
+      buckets.push({ icon: cat.icon, label: cat.label, items: matched })
+      matched.forEach(n => usedNeeds.add(n))
+    }
+  }
+
+  const orphans = needs.filter(n => !usedNeeds.has(n))
+  if (orphans.length > 0) {
+    buckets.push({ icon: '•', label: 'Inne', items: orphans })
+  }
+
+  return (
+    <div className="flex flex-col gap-1.5">
+      <dt
+        className="text-xs font-semibold uppercase tracking-wider"
+        style={{ color: 'var(--text-subtle)', fontFamily: 'var(--font-sans)' }}
+      >
+        Potrzeby
+      </dt>
+      <dd className="flex flex-col gap-3">
+        {buckets.map(bucket => (
+          <div key={bucket.label} className="flex flex-col gap-1.5">
+            <span
+              className="text-xs font-semibold flex items-center gap-1"
+              style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-sans)' }}
+            >
+              <span role="img" aria-hidden="true">{bucket.icon}</span>
+              {bucket.label}
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {bucket.items.map(v => (
+                <span
+                  key={v}
+                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium"
+                  style={{
+                    background: 'var(--primary-soft)',
+                    color: 'var(--primary)',
+                    border: '1px solid var(--border)',
+                  }}
+                >
+                  {v}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </dd>
     </div>
   )
@@ -176,9 +236,7 @@ export function EntryCard({ entry, onDelete }) {
             )}
             <Row label="Sytuacja / Wyzwalacze" value={entry.situation} />
             <Row label="Myśli / Przekonania" value={entry.thoughts} />
-            {(entry.needs ?? []).length > 0 && (
-              <Row label="Potrzeby" value={entry.needs} />
-            )}
+            <NeedsRows needs={entry.needs ?? []} />
             <Row label="Jak chcę się czuć / Czego potrzebuję" value={entry.desiredFeeling} />
             <Row label="Jak potrzebuję myśleć" value={entry.thinking} />
             <Row label="Co mogę dla siebie zrobić" value={entry.actions} />
