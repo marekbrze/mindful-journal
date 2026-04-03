@@ -40,7 +40,7 @@ function Textarea({ id, label, hint, value, onChange, placeholder, minHeight = 9
   )
 }
 
-export function Step1Situation({ data, onChange }) {
+export function Step4Thoughts({ data, onChange }) {
   const handleChange = (key) => (val) => onChange({ ...data, [key]: val })
 
   return (
@@ -50,21 +50,31 @@ export function Step1Situation({ data, onChange }) {
           className="text-xl mb-1"
           style={{ fontFamily: 'var(--font-serif)', color: 'var(--text)' }}
         >
-          Co się wydarzyło?
+          Myśli
         </h2>
         <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          Opisz sytuację z zewnątrz — co konkretnie się stało lub dzieje.
+          Co myślisz o tej sytuacji i jak chciałbyś myśleć?
         </p>
       </div>
 
       <Textarea
-        id="situation"
-        label="Sytuacja / Wyzwalacze"
-        hint="Co konkretnie się wydarzyło lub dzieje? Jaki bodziec poprzedza tę chęć lub dyskomfort?"
-        value={data.situation ?? ''}
-        onChange={handleChange('situation')}
-        placeholder="Np. Spotkanie z szefem, w którym poczułem się niedoceniony..."
-        minHeight={160}
+        id="thoughts"
+        label="Myśli / Przekonania"
+        hint="Jakie myśli pojawiają się w Twojej głowie w tej chwili?"
+        value={data.thoughts ?? ''}
+        onChange={handleChange('thoughts')}
+        placeholder="Np. Znowu to samo. Nikt mnie nie słyszy. Powinienem był..."
+        minHeight={112}
+      />
+
+      <Textarea
+        id="thinking"
+        label="Jak potrzebuję myśleć?"
+        hint="Jakie myślenie lub przekonanie pomoże Ci poczuć się lepiej i zaspokoić potrzeby?"
+        value={data.thinking ?? ''}
+        onChange={handleChange('thinking')}
+        placeholder="Mogę dbać o siebie. Moje potrzeby są ważne. Jeden trudny moment nie definiuje całości..."
+        minHeight={112}
       />
     </div>
   )

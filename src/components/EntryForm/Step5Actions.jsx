@@ -40,7 +40,7 @@ function Textarea({ id, label, hint, value, onChange, placeholder, minHeight = 9
   )
 }
 
-export function Step1Situation({ data, onChange }) {
+export function Step5Actions({ data, onChange }) {
   const handleChange = (key) => (val) => onChange({ ...data, [key]: val })
 
   return (
@@ -50,20 +50,20 @@ export function Step1Situation({ data, onChange }) {
           className="text-xl mb-1"
           style={{ fontFamily: 'var(--font-serif)', color: 'var(--text)' }}
         >
-          Co się wydarzyło?
+          Co mogę zrobić?
         </h2>
         <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          Opisz sytuację z zewnątrz — co konkretnie się stało lub dzieje.
+          Konkretne działania, które możesz podjąć teraz lub wkrótce, aby zaspokoić potrzeby.
         </p>
       </div>
 
       <Textarea
-        id="situation"
-        label="Sytuacja / Wyzwalacze"
-        hint="Co konkretnie się wydarzyło lub dzieje? Jaki bodziec poprzedza tę chęć lub dyskomfort?"
-        value={data.situation ?? ''}
-        onChange={handleChange('situation')}
-        placeholder="Np. Spotkanie z szefem, w którym poczułem się niedoceniony..."
+        id="actions"
+        label="Co mogę dla siebie zrobić?"
+        hint="Konkretne działania, które możesz podjąć teraz lub wkrótce, aby zaspokoić potrzeby."
+        value={data.actions ?? ''}
+        onChange={handleChange('actions')}
+        placeholder="Np. Zadzwonić do przyjaciela, wyjść na spacer, napisać w dzienniku..."
         minHeight={160}
       />
     </div>

@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { StepIndicator } from './StepIndicator'
-import { Step1Emotions } from './Step1Emotions'
-import { Step2Situation } from './Step2Situation'
+import { Step1Situation } from './Step1Emotions'
+import { Step2Emotions } from './Step2Situation'
 import { Step3Needs } from './Step3Needs'
+import { Step4Thoughts } from './Step4Thoughts'
+import { Step5Actions } from './Step5Actions'
 import { ChevronLeft, ChevronRight, Check, Flame } from 'lucide-react'
 
-const STEPS = ['Co czuję?', 'Co się dzieje?', 'Czego potrzebuję?']
+const STEPS = ['Sytuacja', 'Emocje', 'Potrzeby', 'Myśli', 'Działania']
 const TOTAL_STEPS = STEPS.length
 
 const EMPTY_FORM = {
@@ -34,9 +36,6 @@ export function EntryForm({ onSave }) {
       setSaved(false)
     }, 1800)
   }
-
-  const allEmotions = [...(data.emotionsMet ?? []), ...(data.emotionsUnmet ?? [])]
-  const isStep1Valid = allEmotions.length > 0 || (data.customEmotion ?? '').trim().length > 0
 
   return (
     <div className="flex flex-col gap-6">
@@ -83,9 +82,11 @@ export function EntryForm({ onSave }) {
           minHeight: 400,
         }}
       >
-        {step === 1 && <Step1Emotions data={data} onChange={setData} />}
-        {step === 2 && <Step2Situation data={data} onChange={setData} />}
+        {step === 1 && <Step1Situation data={data} onChange={setData} />}
+        {step === 2 && <Step2Emotions data={data} onChange={setData} />}
         {step === 3 && <Step3Needs data={data} onChange={setData} />}
+        {step === 4 && <Step4Thoughts data={data} onChange={setData} />}
+        {step === 5 && <Step5Actions data={data} onChange={setData} />}
       </div>
 
       {/* Navigation */}

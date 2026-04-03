@@ -56,7 +56,7 @@ export function Step3Needs({ data, onChange }) {
           Czego potrzebujesz?
         </h2>
         <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          Zidentyfikuj potrzeby i sformułuj drogę do siebie.
+          Zidentyfikuj potrzeby i to, jak chciałbyś się czuć.
         </p>
       </div>
 
@@ -83,26 +83,6 @@ export function Step3Needs({ data, onChange }) {
         value={data.desiredFeeling ?? ''}
         onChange={handleChange('desiredFeeling')}
         placeholder="Chciałbym poczuć spokój i poczucie bycia wysłuchanym..."
-        minHeight={96}
-      />
-
-      <Textarea
-        id="thinking"
-        label="Jak potrzebuję myśleć?"
-        hint="Jakie myślenie lub przekonanie pomoże Ci poczuć się lepiej i zaspokoić potrzeby?"
-        value={data.thinking ?? ''}
-        onChange={handleChange('thinking')}
-        placeholder="Mogę dbać o siebie. Moje potrzeby są ważne. Jeden trudny moment nie definiuje całości..."
-        minHeight={96}
-      />
-
-      <Textarea
-        id="actions"
-        label="Co mogę dla siebie zrobić?"
-        hint="Konkretne działania, które możesz podjąć teraz lub wkrótce, aby zaspokoić potrzeby."
-        value={data.actions ?? ''}
-        onChange={handleChange('actions')}
-        placeholder="Np. Zadzwonić do przyjaciela, wyjść na spacer, napisać w dzienniku..."
         minHeight={96}
       />
     </div>
