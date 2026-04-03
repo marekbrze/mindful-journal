@@ -72,6 +72,7 @@ export function Step3Needs({ data, onChange }) {
           categories={needsCategories}
           selected={data.needs ?? []}
           onChange={handleChange('needs')}
+          searchPlaceholder="Szukaj potrzeby..."
         />
       </section>
 

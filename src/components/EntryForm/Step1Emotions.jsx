@@ -37,6 +37,7 @@ export function Step1Emotions({ data, onChange }) {
           categories={emotionsMetCategories}
           selected={data.emotionsMet ?? []}
           onChange={handleChange('emotionsMet')}
+          searchPlaceholder="Szukaj emocji..."
         />
       </section>
 
@@ -61,6 +62,7 @@ export function Step1Emotions({ data, onChange }) {
           categories={emotionsUnmetCategories}
           selected={data.emotionsUnmet ?? []}
           onChange={handleChange('emotionsUnmet')}
+          searchPlaceholder="Szukaj emocji..."
         />
       </section>
 
