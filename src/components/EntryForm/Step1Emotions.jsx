@@ -1,5 +1,5 @@
-import { ChipSelector } from './ChipSelector'
-import { emotionsMet, emotionsUnmet } from '../../data/emotions'
+import { GroupedChipSelector } from './ChipSelector'
+import { emotionsMetCategories, emotionsUnmetCategories } from '../../data/emotions'
 
 export function Step1Emotions({ data, onChange }) {
   const handleChange = (key) => (val) => onChange({ ...data, [key]: val })
@@ -33,12 +33,10 @@ export function Step1Emotions({ data, onChange }) {
             Gdy potrzeby są zaspokojone
           </h3>
         </div>
-        <ChipSelector
-          options={emotionsMet}
+        <GroupedChipSelector
+          categories={emotionsMetCategories}
           selected={data.emotionsMet ?? []}
           onChange={handleChange('emotionsMet')}
-          searchable
-          placeholder="Szukaj emocji..."
         />
       </section>
 
@@ -59,12 +57,10 @@ export function Step1Emotions({ data, onChange }) {
             Gdy potrzeby nie są zaspokojone
           </h3>
         </div>
-        <ChipSelector
-          options={emotionsUnmet}
+        <GroupedChipSelector
+          categories={emotionsUnmetCategories}
           selected={data.emotionsUnmet ?? []}
           onChange={handleChange('emotionsUnmet')}
-          searchable
-          placeholder="Szukaj emocji..."
         />
       </section>
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronUp, Trash2, Clock } from 'lucide-react'
 import { needsCategories } from '../../data/needs'
+import { emotionsMetCategories, emotionsUnmetCategories } from '../../data/emotions'
 
 function formatDate(iso) {
   const d = new Date(iso)
@@ -45,6 +46,87 @@ function Row({ label, value }) {
           <span>{value}</span>
         )}
       </dd>
+    </div>
+  )
+}
+
+function groupByCategories(emotions, categories) {
+  const buckets = []
+  const used = new Set()
+  for (const cat of categories) {
+    const matched = emotions.filter(e => cat.needs.includes(e))
+    if (matched.length > 0) {
+      buckets.push({ icon: cat.icon, label: cat.label, items: matched })
+      matched.forEach(e => used.add(e))
+    }
+  }
+  const orphans = emotions.filter(e => !used.has(e))
+  if (orphans.length > 0) buckets.push({ icon: '•', label: 'Inne', items: orphans })
+  return buckets
+}
+
+function EmotionBuckets({ buckets }) {
+  return (
+    <div className="flex flex-col gap-3">
+      {buckets.map(bucket => (
+        <div key={bucket.label} className="flex flex-col gap-1.5">
+          <span
+            className="text-xs font-semibold flex items-center gap-1"
+            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-sans)' }}
+          >
+            <span role="img" aria-hidden="true">{bucket.icon}</span>
+            {bucket.label}
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {bucket.items.map(v => (
+              <span
+                key={v}
+                className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium"
+                style={{
+                  background: 'var(--primary-softer)',
+                  color: 'var(--primary)',
+                  border: '1px solid var(--border-subtle)',
+                }}
+              >
+                {v}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function EmotionRows({ emotionsMet, emotionsUnmet }) {
+  const metBuckets = groupByCategories(emotionsMet ?? [], emotionsMetCategories)
+  const unmetBuckets = groupByCategories(emotionsUnmet ?? [], emotionsUnmetCategories)
+  if (metBuckets.length === 0 && unmetBuckets.length === 0) return null
+
+  return (
+    <div className="flex flex-col gap-4">
+      {metBuckets.length > 0 && (
+        <div className="flex flex-col gap-1.5">
+          <dt
+            className="text-xs font-semibold uppercase tracking-wider"
+            style={{ color: 'var(--text-subtle)', fontFamily: 'var(--font-sans)' }}
+          >
+            Emocje — gdy potrzeby są zaspokojone
+          </dt>
+          <dd><EmotionBuckets buckets={metBuckets} /></dd>
+        </div>
+      )}
+      {unmetBuckets.length > 0 && (
+        <div className="flex flex-col gap-1.5">
+          <dt
+            className="text-xs font-semibold uppercase tracking-wider"
+            style={{ color: 'var(--text-subtle)', fontFamily: 'var(--font-sans)' }}
+          >
+            Emocje — gdy potrzeby nie są zaspokojone
+          </dt>
+          <dd><EmotionBuckets buckets={unmetBuckets} /></dd>
+        </div>
+      )}
     </div>
   )
 }
@@ -228,9 +310,7 @@ export function EntryCard({ entry, onDelete }) {
           style={{ borderColor: 'var(--border-subtle)' }}
         >
           <dl className="flex flex-col gap-5">
-            {allEmotions.length > 0 && (
-              <Row label="Emocje" value={allEmotions} />
-            )}
+            <EmotionRows emotionsMet={entry.emotionsMet} emotionsUnmet={entry.emotionsUnmet} />
             {entry.customEmotion && (
               <Row label="Dodatkowe emocje" value={entry.customEmotion} />
             )}
