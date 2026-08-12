@@ -1,16 +1,20 @@
-# React + Vite
+# mindful-journal (Ognisko · Dziennik NVC)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A reflection journal for practicing **Nonviolent Communication (NVC)** — structured around an empathy table ("Ognisko"). Local-first; entries stay on your device.
 
-Currently, two official plugins are available:
+**Live →** <https://marekbrze.github.io/mindful-journal/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What it is
 
-## React Compiler
+A tool for NVC practice: work through observations, feelings, needs, and requests in a structured table rather than free-form notes. Built for repeated, reflective use — not a feed.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Local-first.** Entries are stored in the browser; no account, no cloud.
+- **Structured empathy table.** The "Ognisko" layout guides the four NVC steps.
 
-## Expanding the ESLint configuration
+## Tech
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+React, Vite, Tailwind CSS, lucide-react (icons).
+
+## Status
+
+Personal project. Interface is in Polish.
