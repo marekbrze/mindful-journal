@@ -50,20 +50,20 @@ export function Step5Actions({ data, onChange }) {
           className="text-xl mb-1"
           style={{ fontFamily: 'var(--font-serif)', color: 'var(--text)' }}
         >
-          Co mogę zrobić?
+          What can I do?
         </h2>
         <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          Konkretne działania, które możesz podjąć teraz lub wkrótce, aby zaspokoić potrzeby.
+          Specific actions you can take now or soon to meet your needs.
         </p>
       </div>
 
       <Textarea
         id="actions"
-        label="Co mogę dla siebie zrobić?"
-        hint="Konkretne działania, które możesz podjąć teraz lub wkrótce, aby zaspokoić potrzeby."
+        label="What can I do for myself?"
+        hint="Specific actions you can take now or soon to meet your needs."
         value={data.actions ?? ''}
         onChange={handleChange('actions')}
-        placeholder="Np. Zadzwonić do przyjaciela, wyjść na spacer, napisać w dzienniku..."
+        placeholder="E.g. Call a friend, go for a walk, write in a journal..."
         minHeight={160}
       />
     </div>

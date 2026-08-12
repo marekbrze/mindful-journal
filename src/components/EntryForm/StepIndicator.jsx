@@ -1,6 +1,6 @@
 export function StepIndicator({ currentStep, totalSteps, labels }) {
   return (
-    <nav aria-label="Postęp wypełniania" className="w-full">
+    <nav aria-label="Form progress" className="w-full">
       <ol className="flex items-center gap-0">
         {Array.from({ length: totalSteps }, (_, i) => {
           const step = i + 1

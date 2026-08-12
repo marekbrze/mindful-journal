@@ -53,10 +53,10 @@ export function Step3Needs({ data, onChange }) {
           className="text-xl mb-1"
           style={{ fontFamily: 'var(--font-serif)', color: 'var(--text)' }}
         >
-          Czego potrzebujesz?
+          What do you need?
         </h2>
         <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          Zidentyfikuj potrzeby i to, jak chciałbyś się czuć.
+          Identify your needs and how you'd like to feel.
         </p>
       </div>
 
@@ -66,23 +66,23 @@ export function Step3Needs({ data, onChange }) {
           className="text-sm font-semibold uppercase tracking-wider mb-3"
           style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-sans)' }}
         >
-          Wybierz potrzeby
+          Select needs
         </h3>
         <GroupedChipSelector
           categories={needsCategories}
           selected={data.needs ?? []}
           onChange={handleChange('needs')}
-          searchPlaceholder="Szukaj potrzeby..."
+          searchPlaceholder="Search needs..."
         />
       </section>
 
       <Textarea
         id="desiredFeeling"
-        label="Jak chciałbym/chciałabym się czuć? Czego teraz potrzebuję?"
-        hint="Wyobraź sobie, jak chciałbyś się czuć. Jakie potrzeby chcesz zaspokoić?"
+        label="How would I like to feel? What do I need right now?"
+        hint="Imagine how you'd like to feel. Which needs do you want to meet?"
         value={data.desiredFeeling ?? ''}
         onChange={handleChange('desiredFeeling')}
-        placeholder="Chciałbym poczuć spokój i poczucie bycia wysłuchanym..."
+        placeholder="I'd like to feel calm and a sense of being heard..."
         minHeight={96}
       />
     </div>

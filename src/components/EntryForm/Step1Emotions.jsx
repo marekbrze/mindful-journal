@@ -50,20 +50,20 @@ export function Step1Situation({ data, onChange }) {
           className="text-xl mb-1"
           style={{ fontFamily: 'var(--font-serif)', color: 'var(--text)' }}
         >
-          Co się wydarzyło?
+          What happened?
         </h2>
         <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          Opisz sytuację z zewnątrz — co konkretnie się stało lub dzieje.
+          Describe the situation from the outside — what specifically happened or is happening.
         </p>
       </div>
 
       <Textarea
         id="situation"
-        label="Sytuacja / Wyzwalacze"
-        hint="Co konkretnie się wydarzyło lub dzieje? Jaki bodziec poprzedza tę chęć lub dyskomfort?"
+        label="Situation / Triggers"
+        hint="What specifically happened or is happening? What trigger precedes this urge or discomfort?"
         value={data.situation ?? ''}
         onChange={handleChange('situation')}
-        placeholder="Np. Spotkanie z szefem, w którym poczułem się niedoceniony..."
+        placeholder="e.g. A meeting with my boss where I felt unappreciated..."
         minHeight={160}
       />
     </div>

@@ -5,14 +5,14 @@ import { emotionsMetCategories, emotionsUnmetCategories } from '../../data/emoti
 
 function formatDate(iso) {
   const d = new Date(iso)
-  return d.toLocaleDateString('pl-PL', {
+  return d.toLocaleDateString('en-US', {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   })
 }
 
 function formatTime(iso) {
   const d = new Date(iso)
-  return d.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' })
+  return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
 }
 
 function Row({ label, value }) {
@@ -61,7 +61,7 @@ function groupByCategories(emotions, categories) {
     }
   }
   const orphans = emotions.filter(e => !used.has(e))
-  if (orphans.length > 0) buckets.push({ icon: '•', label: 'Inne', items: orphans })
+  if (orphans.length > 0) buckets.push({ icon: '•', label: 'Other', items: orphans })
   return buckets
 }
 
@@ -111,7 +111,7 @@ function EmotionRows({ emotionsMet, emotionsUnmet }) {
             className="text-xs font-semibold uppercase tracking-wider"
             style={{ color: 'var(--text-subtle)', fontFamily: 'var(--font-sans)' }}
           >
-            Emocje — gdy potrzeby są zaspokojone
+            Emotions — when needs are met
           </dt>
           <dd><EmotionBuckets buckets={metBuckets} /></dd>
         </div>
@@ -122,7 +122,7 @@ function EmotionRows({ emotionsMet, emotionsUnmet }) {
             className="text-xs font-semibold uppercase tracking-wider"
             style={{ color: 'var(--text-subtle)', fontFamily: 'var(--font-sans)' }}
           >
-            Emocje — gdy potrzeby nie są zaspokojone
+            Emotions — when needs are unmet
           </dt>
           <dd><EmotionBuckets buckets={unmetBuckets} /></dd>
         </div>
@@ -147,7 +147,7 @@ function NeedsRows({ needs }) {
 
   const orphans = needs.filter(n => !usedNeeds.has(n))
   if (orphans.length > 0) {
-    buckets.push({ icon: '•', label: 'Inne', items: orphans })
+    buckets.push({ icon: '•', label: 'Other', items: orphans })
   }
 
   return (
@@ -156,7 +156,7 @@ function NeedsRows({ needs }) {
         className="text-xs font-semibold uppercase tracking-wider"
         style={{ color: 'var(--text-subtle)', fontFamily: 'var(--font-sans)' }}
       >
-        Potrzeby
+        Needs
       </dt>
       <dd className="flex flex-col gap-3">
         {buckets.map(bucket => (
@@ -233,7 +233,7 @@ export function EntryCard({ entry, onDelete }) {
             {new Date(entry.createdAt).getDate()}
           </span>
           <span className="text-xs font-medium mt-0.5" style={{ color: 'var(--text-subtle)', fontFamily: 'var(--font-sans)' }}>
-            {new Date(entry.createdAt).toLocaleDateString('pl-PL', { month: 'short' })}
+            {new Date(entry.createdAt).toLocaleDateString('en-US', { month: 'short' })}
           </span>
         </div>
 
@@ -268,7 +268,7 @@ export function EntryCard({ entry, onDelete }) {
                 className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs"
                 style={{ color: 'var(--text-subtle)', border: '1px solid var(--border-subtle)' }}
               >
-                +{allEmotions.length - 3} więcej
+                +{allEmotions.length - 3} more
               </span>
             )}
             {needsPreview.map(n => (
@@ -289,7 +289,7 @@ export function EntryCard({ entry, onDelete }) {
                 className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs"
                 style={{ color: 'var(--text-subtle)', border: '1px solid var(--border-subtle)' }}
               >
-                +{entry.needs.length - 3} więcej
+                +{entry.needs.length - 3} more
               </span>
             )}
           </div>
@@ -312,14 +312,14 @@ export function EntryCard({ entry, onDelete }) {
           <dl className="flex flex-col gap-5">
             <EmotionRows emotionsMet={entry.emotionsMet} emotionsUnmet={entry.emotionsUnmet} />
             {entry.customEmotion && (
-              <Row label="Dodatkowe emocje" value={entry.customEmotion} />
+              <Row label="Additional emotions" value={entry.customEmotion} />
             )}
-            <Row label="Sytuacja / Wyzwalacze" value={entry.situation} />
-            <Row label="Myśli / Przekonania" value={entry.thoughts} />
+            <Row label="Situation / Triggers" value={entry.situation} />
+            <Row label="Thoughts / Beliefs" value={entry.thoughts} />
             <NeedsRows needs={entry.needs ?? []} />
-            <Row label="Jak chcę się czuć / Czego potrzebuję" value={entry.desiredFeeling} />
-            <Row label="Jak potrzebuję myśleć" value={entry.thinking} />
-            <Row label="Co mogę dla siebie zrobić" value={entry.actions} />
+            <Row label="How I want to feel / What I need" value={entry.desiredFeeling} />
+            <Row label="How I need to think" value={entry.thinking} />
+            <Row label="What I can do for myself" value={entry.actions} />
           </dl>
 
           <div className="flex justify-end mt-5 pt-4 border-t" style={{ borderColor: 'var(--border-subtle)' }}>
@@ -333,10 +333,10 @@ export function EntryCard({ entry, onDelete }) {
                 border: '1.5px solid',
                 borderColor: confirmDelete ? 'var(--danger)' : 'var(--border)',
               }}
-              aria-label={confirmDelete ? 'Kliknij ponownie, aby potwierdzić usunięcie' : 'Usuń wpis'}
+              aria-label={confirmDelete ? 'Click again to confirm deletion' : 'Delete entry'}
             >
               <Trash2 size={14} aria-hidden="true" />
-              {confirmDelete ? 'Potwierdzić usunięcie?' : 'Usuń wpis'}
+              {confirmDelete ? 'Confirm deletion?' : 'Delete entry'}
             </button>
           </div>
         </div>

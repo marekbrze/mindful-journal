@@ -23,10 +23,10 @@ export function History({ entries, onDelete }) {
             className="text-lg mb-1"
             style={{ fontFamily: 'var(--font-serif)', color: 'var(--text)' }}
           >
-            Brak wpisów
+            No entries
           </h3>
           <p className="text-sm max-w-xs" style={{ color: 'var(--text-muted)' }}>
-            Twoje wpisy refleksji pojawią się tutaj po zapisaniu pierwszego z nich.
+            Your reflection entries will appear here once you save your first one.
           </p>
         </div>
       </div>
@@ -34,13 +34,13 @@ export function History({ entries, onDelete }) {
   }
 
   return (
-    <section aria-label="Historia wpisów">
+    <section aria-label="Entry history">
       <div className="flex items-center justify-between mb-4">
         <h2
           className="text-lg"
           style={{ fontFamily: 'var(--font-serif)', color: 'var(--text)' }}
         >
-          Historia wpisów
+          Entry history
         </h2>
         <span
           className="text-sm px-3 py-1 rounded-full font-medium"
@@ -50,7 +50,7 @@ export function History({ entries, onDelete }) {
             border: '1px solid var(--border)',
           }}
         >
-          {entries.length} {entries.length === 1 ? 'wpis' : entries.length < 5 ? 'wpisy' : 'wpisów'}
+          {entries.length} {entries.length === 1 ? 'entry' : 'entries'}
         </span>
       </div>
 

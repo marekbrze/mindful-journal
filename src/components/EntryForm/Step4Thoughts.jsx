@@ -50,30 +50,30 @@ export function Step4Thoughts({ data, onChange }) {
           className="text-xl mb-1"
           style={{ fontFamily: 'var(--font-serif)', color: 'var(--text)' }}
         >
-          Myśli
+          Thoughts
         </h2>
         <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          Co myślisz o tej sytuacji i jak chciałbyś myśleć?
+          What do you think about this situation, and how would you like to think?
         </p>
       </div>
 
       <Textarea
         id="thoughts"
-        label="Myśli / Przekonania"
-        hint="Jakie myśli pojawiają się w Twojej głowie w tej chwili?"
+        label="Thoughts / Beliefs"
+        hint="What thoughts are going through your mind right now?"
         value={data.thoughts ?? ''}
         onChange={handleChange('thoughts')}
-        placeholder="Np. Znowu to samo. Nikt mnie nie słyszy. Powinienem był..."
+        placeholder="E.g. Same thing again. No one hears me. I should have..."
         minHeight={112}
       />
 
       <Textarea
         id="thinking"
-        label="Jak potrzebuję myśleć?"
-        hint="Jakie myślenie lub przekonanie pomoże Ci poczuć się lepiej i zaspokoić potrzeby?"
+        label="How do I need to think?"
+        hint="What way of thinking or belief would help you feel better and meet your needs?"
         value={data.thinking ?? ''}
         onChange={handleChange('thinking')}
-        placeholder="Mogę dbać o siebie. Moje potrzeby są ważne. Jeden trudny moment nie definiuje całości..."
+        placeholder="I can take care of myself. My needs matter. One hard moment doesn't define everything..."
         minHeight={112}
       />
     </div>

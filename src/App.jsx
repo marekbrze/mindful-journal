@@ -25,7 +25,7 @@ function NavTab({ active, onClick, icon: Icon, label, badge }) {
         <span
           className="inline-flex items-center justify-center w-5 h-5 rounded-full text-xs font-bold"
           style={{ background: 'var(--primary)', color: 'white' }}
-          aria-label={`${badge} wpisów`}
+          aria-label={`${badge} entries`}
         >
           {badge}
         </span>
@@ -54,7 +54,7 @@ export default function App() {
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-medium"
         style={{ background: 'var(--primary)', color: 'white' }}
       >
-        Przejdź do treści
+        Skip to content
       </a>
 
       {/* Header */}
@@ -81,7 +81,7 @@ export default function App() {
             Ognisko
           </h1>
           <p className="text-xs leading-tight" style={{ color: 'var(--text-subtle)', fontFamily: 'var(--font-sans)' }}>
-            Dziennik NVC
+            NVC Journal
           </p>
         </div>
       </header>
@@ -89,7 +89,7 @@ export default function App() {
       {/* Navigation tabs */}
       <nav
         role="tablist"
-        aria-label="Nawigacja"
+        aria-label="Navigation"
         className="sticky top-[57px] z-20 mx-4 mt-3 rounded-xl p-1"
         style={{
           background: 'var(--primary-softer)',
@@ -101,13 +101,13 @@ export default function App() {
             active={view === 'form'}
             onClick={() => setView('form')}
             icon={PenLine}
-            label="Nowy wpis"
+            label="New entry"
           />
           <NavTab
             active={view === 'history'}
             onClick={() => setView('history')}
             icon={BookOpen}
-            label="Historia"
+            label="History"
             badge={entries.length}
           />
         </div>
@@ -134,7 +134,7 @@ export default function App() {
           className="text-xs italic"
           style={{ color: 'var(--text-subtle)', fontFamily: 'var(--font-serif)' }}
         >
-          Tabela z Ogniskiem — Mateusz Gola (2024) · NVC
+          Campfire Table — Mateusz Gola (2024) · NVC
         </p>
       </footer>
     </div>

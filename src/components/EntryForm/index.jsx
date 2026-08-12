@@ -7,7 +7,7 @@ import { Step4Thoughts } from './Step4Thoughts'
 import { Step5Actions } from './Step5Actions'
 import { ChevronLeft, ChevronRight, Check, Flame } from 'lucide-react'
 
-const STEPS = ['Sytuacja', 'Emocje', 'Potrzeby', 'Myśli', 'Działania']
+const STEPS = ['Situation', 'Emotions', 'Needs', 'Thoughts', 'Actions']
 const TOTAL_STEPS = STEPS.length
 
 const EMPTY_FORM = {
@@ -56,10 +56,10 @@ export function EntryForm({ onSave }) {
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest mb-0.5" style={{ color: 'var(--text-subtle)' }}>
-            Tabela z Ogniskiem
+            Campfire Table
           </p>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-            Nowy wpis refleksji — {new Date().toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long' })}
+            New reflection entry — {new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' })}
           </p>
         </div>
       </div>
@@ -103,7 +103,7 @@ export function EntryForm({ onSave }) {
             }}
           >
             <ChevronLeft size={16} aria-hidden="true" />
-            Wstecz
+            Back
           </button>
         ) : (
           <div />
@@ -119,7 +119,7 @@ export function EntryForm({ onSave }) {
               boxShadow: '0 2px 10px oklch(0.4 0.13 145 / 0.25)',
             }}
           >
-            Dalej
+            Next
             <ChevronRight size={16} aria-hidden="true" />
           </button>
         ) : (
@@ -137,7 +137,7 @@ export function EntryForm({ onSave }) {
             aria-live="polite"
           >
             <Check size={16} aria-hidden="true" />
-            {saved ? 'Zapisano!' : 'Zapisz wpis'}
+            {saved ? 'Saved!' : 'Save entry'}
           </button>
         )}
       </div>

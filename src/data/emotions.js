@@ -1,70 +1,70 @@
 export const emotionsMetCategories = [
   {
     id: "energia",
-    label: "Energia",
+    label: "Energy",
     icon: "⚡",
     needs: [
-      "Pełen energii", "Pełen werwy", "Pełen życia", "Pobudzony", "Ożywiony",
-      "Zelektryzowany", "Rozentuzjazmowany", "Uskrzydlony", "Pełen pasji",
+      "Energetic", "Driven", "Lively", "Stimulated", "Animated",
+      "Electrified", "Enthusiastic", "Uplifted", "Passionate",
     ],
   },
   {
     id: "spokoj",
-    label: "Spokój",
+    label: "Calm",
     icon: "🌿",
     needs: [
-      "Komfort", "Zaspokojony", "Usatysfakcjonowany", "Rozluźniony", "Zrelaksowany",
-      "Bezpieczny", "Beztroski", "Spokojny", "Wyciszony",
+      "Comfortable", "Fulfilled", "Satisfied", "Relaxed", "At ease",
+      "Safe", "Carefree", "Calm", "Serene",
     ],
   },
   {
     id: "swiezosc",
-    label: "Świeżość",
+    label: "Freshness",
     icon: "✨",
     needs: [
-      "Wypoczęty", "Odświeżony", "Energiczny", "Silny", "Pogodny", "Swobodny", "Pełen błogości",
+      "Rested", "Refreshed", "Energetic", "Strong", "Cheerful", "Free", "Blissful",
     ],
   },
   {
     id: "ciekawosc",
-    label: "Ciekawość",
+    label: "Curiosity",
     icon: "🔍",
     needs: [
-      "Zainteresowany", "Zaciekawiony", "Podniecony", "Podekscytowany", "Zafascynowany",
-      "Zaintrygowany", "Zainspirowany", "Zachęcony",
+      "Interested", "Curious", "Excited", "Eager", "Fascinated",
+      "Intrigued", "Inspired", "Encouraged",
     ],
   },
   {
     id: "radosc",
-    label: "Radość",
+    label: "Joy",
     icon: "😊",
     needs: [
-      "Zadowolony", "Szczęśliwy", "Pełen nadziei", "Zachwycony", "Wdzięczny",
-      "Radosny", "Spełniony", "Pełen optymizmu", "Dumny",
+      "Content", "Happy", "Hopeful", "Delighted", "Grateful",
+      "Joyful", "Fulfilled", "Optimistic", "Proud",
     ],
   },
   {
     id: "milosc",
-    label: "Miłość",
+    label: "Love",
     icon: "💛",
     needs: [
-      "Kochający", "W kontakcie", "Otwarty", "Czuły", "Przyjazny",
+      "Loving", "Connected", "Open", "Tender", "Affectionate",
     ],
   },
   {
     id: "zabawa",
-    label: "Zabawa",
+    label: "Play",
     icon: "🎉",
     needs: [
-      "Wesoły", "Śmiały", "Żywy", "Chętny do zabawy", "Rozbawiony", "Rozradowany",
+      "Cheerful", "Daring", "Lively", "Playful", "Amused", "Elated",
     ],
   },
   {
     id: "wzruszenie",
-    label: "Wzruszenie",
+    label: "Moved",
     icon: "🌸",
     needs: [
-      "Wzruszony", "Roztkliwiony", "Pokrzepiony", "Rozpromieniony", "Poruszony",
+      "Moved", "Touched", "Uplifted", "Glowing", "Stirred",
     ],
   },
 ]
@@ -72,72 +72,72 @@ export const emotionsMetCategories = [
 export const emotionsUnmetCategories = [
   {
     id: "brak-energii",
-    label: "Brak energii",
+    label: "Lack of energy",
     icon: "😴",
     needs: [
-      "Bez energii", "Apatyczny", "Markotny", "Odrętwiały", "Oklapnięty",
-      "Osowiały", "Otępiały", "Przybity", "Przygaszony",
+      "Drained", "Apathetic", "Gloomy", "Numb", "Limp",
+      "Lethargic", "Dazed", "Down", "Deflated",
     ],
   },
   {
     id: "dyskomfort",
-    label: "Dyskomfort",
+    label: "Discomfort",
     icon: "😰",
     needs: [
-      "Dyskomfort", "Zaniepokojony", "Zawstydzony", "Zakłopotany",
-      "Skonsternowany", "Speszony", "Spłoszony", "Spięty", "Strapiony", "Zmieszany", "Zażenowany",
+      "Uncomfortable", "Uneasy", "Ashamed", "Embarrassed",
+      "Dismayed", "Flustered", "Startled", "Tense", "Troubled", "Confused", "Abashed",
     ],
   },
   {
     id: "zmeczenie",
-    label: "Zmęczenie",
+    label: "Fatigue",
     icon: "😩",
     needs: [
-      "Zmęczony", "Wyczerpany", "Śpiący", "Słaby", "Przytłoczony",
+      "Tired", "Exhausted", "Sleepy", "Weak", "Overwhelmed",
     ],
   },
   {
     id: "nuda",
-    label: "Nuda",
+    label: "Boredom",
     icon: "😶",
     needs: [
-      "Niezainteresowany", "Znudzony", "Pusty",
+      "Uninterested", "Bored", "Empty",
     ],
   },
   {
     id: "smutek",
-    label: "Smutek",
+    label: "Sadness",
     icon: "😔",
     needs: [
-      "Niezadowolony", "Nieszczęśliwy", "Rozczarowany", "Ociężały", "Osamotniony",
-      "Zasmucony", "Zatroskany", "Przygnębiony", "Załamany", "Zafrasowany",
-      "Rozgoryczony", "Zgorzkniały", "Zawiedziony",
+      "Dissatisfied", "Unhappy", "Disappointed", "Heavy", "Lonely",
+      "Sad", "Worried", "Downcast", "Broken", "Troubled",
+      "Bitter", "Resentful", "Let down",
     ],
   },
   {
     id: "napiecie",
-    label: "Napięcie",
+    label: "Tension",
     icon: "😤",
     needs: [
-      "Nerwowy", "Zmartwiony", "Napięty", "Podenerwowany", "Podminowany",
+      "Nervous", "Worried", "Tense", "Stressed", "Agitated",
     ],
   },
   {
     id: "zlosc",
-    label: "Złość",
+    label: "Anger",
     icon: "😡",
     needs: [
-      "Wściekły", "Zły", "Sfrustrowany", "Zirytowany", "Podrażniony", "Rozdygotany",
-      "Rozeźlony", "Rozsierdzony", "Zagniewany", "Wzburzony",
+      "Furious", "Angry", "Frustrated", "Irritated", "Annoyed", "Trembling",
+      "Incensed", "Enraged", "Indignant", "Agitated",
     ],
   },
   {
     id: "strach",
-    label: "Strach",
+    label: "Fear",
     icon: "😨",
     needs: [
-      "Przestraszony", "Pełen obaw", "Wątpiący", "Zszokowany", "Przerażony",
-      "Spanikowany", "Zatrwożony", "Roztrzęsiony", "Zaskoczony",
+      "Frightened", "Apprehensive", "Doubtful", "Shocked", "Terrified",
+      "Panicked", "Alarmed", "Shaken", "Surprised",
     ],
   },
 ]

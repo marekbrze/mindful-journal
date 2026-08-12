@@ -5,7 +5,7 @@ function cn(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export function ChipSelector({ options, selected, onChange, searchable = false, placeholder = 'Szukaj...' }) {
+export function ChipSelector({ options, selected, onChange, searchable = false, placeholder = 'Search...' }) {
   const [query, setQuery] = useState('')
 
   const filtered = query.trim()
@@ -48,7 +48,7 @@ export function ChipSelector({ options, selected, onChange, searchable = false, 
       <div className="flex flex-wrap gap-2" role="group">
         {filtered.length === 0 && (
           <p className="text-sm italic" style={{ color: 'var(--text-subtle)' }}>
-            Brak wyników dla &quot;{query}&quot;
+            No results for &quot;{query}&quot;
           </p>
         )}
         {filtered.map(item => {
@@ -77,7 +77,7 @@ export function ChipSelector({ options, selected, onChange, searchable = false, 
   )
 }
 
-export function GroupedChipSelector({ categories, selected, onChange, searchPlaceholder = 'Szukaj...' }) {
+export function GroupedChipSelector({ categories, selected, onChange, searchPlaceholder = 'Search...' }) {
   const [query, setQuery] = useState('')
 
   const toggle = (item) => {
@@ -125,7 +125,7 @@ export function GroupedChipSelector({ categories, selected, onChange, searchPlac
 
       {visibleCategories.length === 0 ? (
         <p className="text-sm italic" style={{ color: 'var(--text-subtle)' }}>
-          Brak wyników dla &quot;{query}&quot;
+          No results for &quot;{query}&quot;
         </p>
       ) : (
         <div className="flex flex-col gap-5">

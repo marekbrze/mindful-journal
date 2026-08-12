@@ -53,10 +53,10 @@ export function Step2Emotions({ data, onChange }) {
           className="text-xl mb-1"
           style={{ fontFamily: 'var(--font-serif)', color: 'var(--text)' }}
         >
-          Co teraz czujesz?
+          What are you feeling right now?
         </h2>
         <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          Wybierz emocje, które najlepiej opisują to, co przeżywasz. Możesz wybrać kilka.
+          Choose the emotions that best describe what you're experiencing. You can select several.
         </p>
       </div>
 
@@ -72,14 +72,14 @@ export function Step2Emotions({ data, onChange }) {
             className="text-sm font-semibold uppercase tracking-wider"
             style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-sans)' }}
           >
-            Gdy potrzeby są zaspokojone
+            When needs are met
           </h3>
         </div>
         <GroupedChipSelector
           categories={emotionsMetCategories}
           selected={data.emotionsMet ?? []}
           onChange={handleChange('emotionsMet')}
-          searchPlaceholder="Szukaj emocji..."
+          searchPlaceholder="Search emotions..."
         />
       </section>
 
@@ -97,14 +97,14 @@ export function Step2Emotions({ data, onChange }) {
             className="text-sm font-semibold uppercase tracking-wider"
             style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-sans)' }}
           >
-            Gdy potrzeby nie są zaspokojone
+            When needs are not met
           </h3>
         </div>
         <GroupedChipSelector
           categories={emotionsUnmetCategories}
           selected={data.emotionsUnmet ?? []}
           onChange={handleChange('emotionsUnmet')}
-          searchPlaceholder="Szukaj emocji..."
+          searchPlaceholder="Search emotions..."
         />
       </section>
 
@@ -112,11 +112,11 @@ export function Step2Emotions({ data, onChange }) {
 
       <Textarea
         id="customEmotion"
-        label="Dodatkowe emocje (opcjonalnie)"
-        hint="Jeśli Twoje emocje nie pojawiły się na liście — opisz je tutaj własnymi słowami."
+        label="Additional emotions (optional)"
+        hint="If your emotions weren't on the list — describe them here in your own words."
         value={data.customEmotion ?? ''}
         onChange={handleChange('customEmotion')}
-        placeholder="Np. czuję jakieś dziwne napięcie, które trudno nazwać..."
+        placeholder="e.g. I feel a strange tension that's hard to name..."
         minHeight={72}
       />
     </div>

@@ -1,4 +1,4 @@
-# mindful-journal (Ognisko · Dziennik NVC)
+# mindful-journal (Ognisko · NVC Journal)
 
 A reflection journal for practicing **Nonviolent Communication (NVC)** — structured around an empathy table ("Ognisko"). Local-first; entries stay on your device.
 
@@ -17,4 +17,4 @@ React, Vite, Tailwind CSS, lucide-react (icons).
 
 ## Status
 
-Personal project. Interface is in Polish.
+Personal project. Interface is in English.
